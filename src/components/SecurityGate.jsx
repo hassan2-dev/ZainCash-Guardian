@@ -16,19 +16,19 @@ export default function SecurityGate() {
       animate={{ opacity: 1, scale: 1 }}
       className="glass relative overflow-hidden rounded-2xl p-5 text-center sm:rounded-3xl sm:p-8"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(45,212,191,0.12),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(207,0,114,0.16),transparent_55%)]" />
       <div className="relative">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--color-teal)]/30 bg-[var(--color-teal)]/10">
-          <Lock className="h-6 w-6 text-[var(--color-teal)]" />
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--color-brand)]/30 bg-[var(--color-brand)]/10">
+          <Lock className="h-6 w-6 text-[var(--color-brand)]" />
         </div>
         <h2 className="font-en text-lg font-bold text-[var(--color-foam)] sm:text-xl">
           Guardian Security Layer
         </h2>
-        <p className="font-ar mt-1 text-sm text-[var(--color-mist)]" dir="rtl">
-          طبقة الحماية قبل التنفيذ
+        <p className="mt-1 text-sm text-[var(--color-mist)]">
+          <Bi ar="طبقة الحماية قبل التنفيذ" en="Security layer before execution" />
         </p>
 
-        <ul className="mx-auto mt-6 max-w-sm space-y-3 text-right">
+        <ul className="mx-auto mt-6 max-w-sm space-y-3 text-start">
           {CHECKS.map((c, i) => (
             <motion.li
               key={c.key}
@@ -40,7 +40,7 @@ export default function SecurityGate() {
               <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-ok)]/15 text-[var(--color-ok)]">
                 <Check className="h-3.5 w-3.5" />
               </span>
-              <Bi ar={c.ar} en={c.en} size="sm" stack={false} />
+              <Bi ar={c.ar} en={c.en} />
             </motion.li>
           ))}
         </ul>
@@ -51,7 +51,7 @@ export default function SecurityGate() {
           transition={{ delay: 1.4 }}
           className="mt-6 text-sm text-[var(--color-amber)]"
         >
-          <Bi ar="بانتظار المصادقة الآمنة" en="Awaiting secure authentication" size="sm" />
+          <Bi ar="بانتظار المصادقة الآمنة" en="Awaiting secure authentication" />
         </motion.div>
       </div>
     </motion.div>

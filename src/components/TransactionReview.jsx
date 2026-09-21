@@ -55,8 +55,7 @@ export default function TransactionReview({ intent, onConfirm, onEdit, loading }
 
       {intent.risk?.flags?.length > 0 && (
         <div className="mt-4 rounded-xl border border-[var(--color-amber)]/30 bg-[var(--color-amber)]/10 px-3 py-2 text-xs text-[var(--color-amber)]">
-          <span className="font-ar" dir="rtl">تنبيه مخاطر تجريبي:</span>{' '}
-          <span className="font-en" dir="ltr">Demo risk:</span>{' '}
+          <Bi ar="تنبيه مخاطر تجريبي:" en="Demo risk:" />{' '}
           {intent.risk.flags.join(' · ')}
         </div>
       )}
@@ -75,10 +74,10 @@ export default function TransactionReview({ intent, onConfirm, onEdit, loading }
           type="button"
           onClick={onConfirm}
           disabled={loading}
-          className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-[var(--color-teal)] px-4 py-3 text-sm font-semibold text-[var(--color-ink)] transition hover:bg-[var(--color-teal-dim)]"
+          className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-[var(--color-brand)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-brand-hover)]"
         >
           <Check className="h-4 w-4" />
-          <Bi ar="تأكيد" en="Confirm" stack={false} size="sm" />
+          <Bi ar="تأكيد" en="Confirm" />
         </button>
       </div>
     </motion.div>

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Check, Circle } from 'lucide-react'
-import { Bi } from './Bi'
+import { Bi, useT } from './Bi'
 
 const LABELS = {
   understood: { ar: 'فهم الطلب', en: 'Understood' },
@@ -14,6 +14,8 @@ const LABELS = {
 }
 
 export default function JourneyTimeline({ steps = [] }) {
+  const t = useT()
+
   if (!steps.length) {
     return (
       <div className="glass hidden rounded-2xl p-4 lg:block">
@@ -21,13 +23,12 @@ export default function JourneyTimeline({ steps = [] }) {
           ar="مسار الرحلة"
           en="Journey Timeline"
           className="font-en text-xs font-semibold tracking-wide uppercase"
-          size="sm"
         />
-        <p className="font-ar mt-3 text-xs text-[var(--color-mist)]" dir="rtl">
-          سيظهر هنا تقدم العملية خطوة بخطوة.
-        </p>
-        <p className="font-en mt-1 text-xs text-[var(--color-mist)]/75" dir="ltr">
-          Step-by-step progress will appear here.
+        <p className="mt-3 text-xs text-[var(--color-mist)]">
+          {t(
+            'سيظهر هنا تقدم العملية خطوة بخطوة.',
+            'Step-by-step progress will appear here.',
+          )}
         </p>
       </div>
     )
@@ -88,11 +89,7 @@ export default function JourneyTimeline({ steps = [] }) {
                 </span>
               )}
               <span className={step.done ? 'text-[var(--color-foam)]' : 'text-[var(--color-mist)]'}>
-                {label ? (
-                  <Bi ar={label.ar} en={label.en} size="sm" stack={false} />
-                ) : (
-                  step.label
-                )}
+                {label ? <Bi ar={label.ar} en={label.en} /> : step.label}
               </span>
             </motion.li>
           )

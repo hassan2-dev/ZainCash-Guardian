@@ -7,9 +7,11 @@ import {
   ScanFace,
   Receipt,
   ArrowLeft,
+  ArrowRight,
   Layers,
 } from 'lucide-react'
-import { Bi, BiTitle } from '../components/Bi'
+import { Bi, BiTitle, useT } from '../components/Bi'
+import { useLangStore } from '../store/langStore'
 
 const STEPS = [
   {
@@ -57,24 +59,22 @@ const STEPS = [
 ]
 
 export default function About() {
+  const t = useT()
+  const lang = useLangStore((s) => s.lang)
+  const Arrow = lang === 'ar' ? ArrowLeft : ArrowRight
+
   return (
     <div className="mx-auto max-w-3xl section-pad pb-16 sm:pb-20">
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="text-2xl font-bold sm:text-3xl">
           <BiTitle ar="عن المشروع" en="About the project" />
         </h1>
-        <div className="mt-4 space-y-3 leading-relaxed text-[var(--color-mist)]">
-          <p className="font-ar text-sm sm:text-base" dir="rtl">
-            <strong className="text-[var(--color-foam)]">ZainCash Guardian</strong> نموذج تفاعلي
-            مبني بـ React فقط — بدون Backend وبدون معاملات مالية حقيقية. الهدف إظهار رحلة الدفع
-            الآمن بالصوت للهجة العراقية بشكل سينمائي وصادق تقنيًا.
-          </p>
-          <p className="font-en text-sm sm:text-[0.95rem]" dir="ltr">
-            <strong className="text-[var(--color-foam)]">ZainCash Guardian</strong> is an interactive
-            product demo built with React only — no backend and no real payments. It shows a cinematic,
-            technically honest safe-payment journey for Iraqi dialect voice commands.
-          </p>
-        </div>
+        <p className="mt-4 text-sm leading-relaxed text-[var(--color-mist)] sm:text-base">
+          {t(
+            'ZainCash Guardian نموذج تفاعلي مبني بـ React فقط — بدون Backend وبدون معاملات مالية حقيقية. الهدف إظهار رحلة الدفع الآمن بالصوت للهجة العراقية بشكل سينمائي وصادق تقنيًا.',
+            'ZainCash Guardian is an interactive product demo built with React only — no backend and no real payments. It shows a cinematic, technically honest safe-payment journey for Iraqi dialect voice commands.',
+          )}
+        </p>
       </motion.div>
 
       <div className="mt-8 space-y-3 sm:mt-10 sm:space-y-4">
@@ -86,18 +86,15 @@ export default function About() {
             transition={{ delay: 0.06 * i }}
             className="glass flex gap-3 rounded-2xl p-3.5 sm:gap-4 sm:p-4"
           >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--color-teal)]/10 text-[var(--color-teal)]">
+            <span className="zain-mark flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white">
               <s.icon className="h-5 w-5" />
             </span>
             <div className="min-w-0">
               <h2 className="font-semibold text-[var(--color-foam)]">
-                <Bi ar={s.ar} en={s.en} size="sm" />
+                <Bi ar={s.ar} en={s.en} />
               </h2>
-              <p className="font-ar mt-1.5 text-sm text-[var(--color-mist)]" dir="rtl">
-                {s.arDesc}
-              </p>
-              <p className="font-en mt-1 text-xs text-[var(--color-mist)]/75 sm:text-sm" dir="ltr">
-                {s.enDesc}
+              <p className="mt-1.5 text-sm text-[var(--color-mist)]">
+                {t(s.arDesc, s.enDesc)}
               </p>
             </div>
           </motion.div>
@@ -105,7 +102,9 @@ export default function About() {
       </div>
 
       <div className="glass mt-8 rounded-2xl p-4 text-sm leading-relaxed text-[var(--color-mist)] sm:mt-10 sm:p-5">
-        <Bi ar="التقنيات" en="Tech stack" className="font-semibold text-[var(--color-foam)]" size="sm" />
+        <p className="font-semibold text-[var(--color-foam)]">
+          <Bi ar="التقنيات" en="Tech stack" />
+        </p>
         <p className="font-en mt-2 text-xs sm:text-sm" dir="ltr">
           React + Vite · Tailwind CSS · Framer Motion · Lucide · Zustand · Web Speech API ·
           Web Audio API · localStorage · Sonner
@@ -114,12 +113,10 @@ export default function About() {
 
       <Link
         to="/demo"
-        className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-xl bg-[var(--color-teal)] px-5 py-3 text-sm font-bold text-[var(--color-ink)]"
+        className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-xl bg-[var(--color-brand)] px-5 py-3 text-sm font-bold text-white"
       >
-        <span className="font-ar">ابدأ التجربة</span>
-        <span className="opacity-40">/</span>
-        <span className="font-en">Start Demo</span>
-        <ArrowLeft className="h-4 w-4" />
+        {t('ابدأ التجربة', 'Start Demo')}
+        <Arrow className="h-4 w-4" />
       </Link>
     </div>
   )

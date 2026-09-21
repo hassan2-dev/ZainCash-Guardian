@@ -12,7 +12,7 @@ import SecurityGate from '../components/SecurityGate'
 import FaceIdSimulation from '../components/FaceIdSimulation'
 import TransactionReceipt from '../components/TransactionReceipt'
 import VoiceConfidence from '../components/VoiceConfidence'
-import { Bi, BiTitle } from '../components/Bi'
+import { Bi, BiTitle, useT } from '../components/Bi'
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition'
 import { useGuardianStore, PHASE } from '../store/guardianStore'
 import { EXAMPLE_COMMANDS } from '../engine/demoScenarios'
@@ -22,6 +22,7 @@ export default function Demo() {
   const chatEndRef = useRef(null)
   const [input, setInput] = useState('')
   const [showHistory, setShowHistory] = useState(false)
+  const t = useT()
 
   const {
     phase,
@@ -53,9 +54,9 @@ export default function Demo() {
     },
     onError: (err) => {
       if (err === 'not-allowed') {
-        toast.error('اسمح بالميكروفون أو اكتب الأمر / Allow mic or type instead')
+        toast.error(t('اسمح بالميكروفون أو اكتب الأمر', 'Allow mic access or type instead'))
       } else if (err !== 'aborted' && err !== 'no-speech') {
-        toast.message('تعذّر الصوت — اكتب الأمر / Speech failed — please type')
+        toast.message(t('تعذّر الصوت — اكتب الأمر', 'Speech failed — please type'))
       }
     },
   })
@@ -71,7 +72,7 @@ export default function Demo() {
 
   const handleMic = () => {
     if (!supported) {
-      toast.message('الصوت غير مدعوم — اكتب الأمر / Speech unsupported — type instead')
+      toast.message(t('الصوت غير مدعوم — اكتب الأمر', 'Speech unsupported — type instead'))
       return
     }
     if (listening) stop()
@@ -109,9 +110,7 @@ export default function Demo() {
             <BiTitle ar="عِش تجربة الدفع الآمن" en="Experience the Safe Payment" />
           </h1>
           <p className="mt-1.5 text-xs text-[var(--color-mist)] sm:text-sm">
-            <span className="font-ar" dir="rtl">رحلة بصرية لعملية مالية تجريبية</span>
-            <span className="mx-1.5 opacity-30">·</span>
-            <span className="font-en" dir="ltr">A visual journey of a demo payment</span>
+            {t('رحلة بصرية لعملية مالية تجريبية', 'A visual journey of a demo payment')}
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -124,7 +123,7 @@ export default function Demo() {
             type="button"
             onClick={() => {
               resetAll()
-              toast.success('أُعيد الضبط / Demo wallet reset')
+              toast.success(t('أُعيد ضبط المحفظة التجريبية', 'Demo wallet reset'))
             }}
             className="glass min-h-10 min-w-10 rounded-xl p-2.5 text-[var(--color-mist)] hover:text-[var(--color-foam)]"
             title="Reset / إعادة ضبط"
@@ -165,7 +164,10 @@ export default function Demo() {
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="اكتب الأمر… / Type a command… مثل: حوّل 100 ألف لأحمد"
+                  placeholder={t(
+                    'اكتب الأمر… مثل: حوّل 100 ألف لأحمد',
+                    'Type a command… e.g. transfer 100k to Ahmed',
+                  )}
                   className="font-ar min-h-12 min-w-0 flex-1 rounded-xl border border-[var(--color-line)] bg-[var(--color-ink)]/50 px-3 py-3 text-sm outline-none placeholder:text-[var(--color-mist)]/55 focus:border-[var(--color-teal)]/50 sm:px-4"
                   disabled={isProcessing && phase === PHASE.ANALYZING}
                 />
@@ -294,21 +296,23 @@ export default function Demo() {
               <div className="mb-1 font-en tracking-wide text-[var(--color-foam)] uppercase">
                 Idempotency
               </div>
-              <code className="font-en break-all text-[10px] text-[var(--color-teal)]" dir="ltr">
+              <code className="font-en break-all text-[10px] text-[var(--color-brand)]" dir="ltr">
                 {intent.idempotencyKey}
               </code>
-              <p className="font-ar mt-2 leading-relaxed" dir="rtl">
-                يمنع تنفيذ نفس العملية مرتين عند إعادة الإرسال.
-              </p>
-              <p className="font-en mt-1 leading-relaxed text-[var(--color-mist)]/80" dir="ltr">
-                Blocks duplicate execution if the same request is resent.
+              <p className="mt-2 leading-relaxed">
+                {t(
+                  'يمنع تنفيذ نفس العملية مرتين عند إعادة الإرسال.',
+                  'Blocks duplicate execution if the same request is resent.',
+                )}
               </p>
             </div>
           )}
           {!supported && (
             <div className="rounded-2xl border border-[var(--color-amber)]/30 bg-[var(--color-amber)]/10 p-3 text-xs text-[var(--color-amber)]">
-              <p className="font-ar" dir="rtl">المتصفح لا يدعم Web Speech API. استخدم الكتابة.</p>
-              <p className="font-en mt-1" dir="ltr">Browser lacks Web Speech API. Please type.</p>
+              {t(
+                'المتصفح لا يدعم Web Speech API. استخدم الكتابة.',
+                'Browser lacks Web Speech API. Please type.',
+              )}
             </div>
           )}
         </aside>

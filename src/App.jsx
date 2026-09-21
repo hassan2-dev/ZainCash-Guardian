@@ -20,10 +20,10 @@ export default function App() {
         position="top-center"
         toastOptions={{
           style: {
-            background: '#0e1628',
-            border: '1px solid rgba(148,180,200,0.14)',
-            color: '#e8f1f8',
-            fontFamily: 'Cairo, sans-serif',
+            background: '#1a0b24',
+            border: '1px solid rgba(207,0,114,0.25)',
+            color: '#f8eef8',
+            fontFamily: 'IBM Plex Sans Arabic, Outfit, sans-serif',
           },
         }}
       />
