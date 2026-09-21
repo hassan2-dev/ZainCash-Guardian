@@ -1,0 +1,32 @@
+export const demoBills = [
+  {
+    id: 'bill-elec-1',
+    type: 'electricity',
+    label: 'فاتورة الكهرباء',
+    provider: 'وزارة الكهرباء',
+    accountRef: 'ELEC-44521',
+    amount: 85000,
+    dueDate: '2026-09-30',
+    status: 'unpaid',
+  },
+  {
+    id: 'bill-water-1',
+    type: 'water',
+    label: 'فاتورة الماء',
+    provider: 'دائرة الماء',
+    accountRef: 'WTR-11209',
+    amount: 32000,
+    dueDate: '2026-10-05',
+    status: 'unpaid',
+  },
+  {
+    id: 'bill-internet-1',
+    type: 'internet',
+    label: 'فاتورة الإنترنت',
+    provider: 'Zain Fiber',
+    accountRef: 'NET-77801',
+    amount: 45000,
+    dueDate: '2026-09-25',
+    status: 'unpaid',
+  },
+]

@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-en: "Outfit", system-ui, sans-serif;
+  --font-ar: "IBM Plex Sans Arabic", "Cairo", "Segoe UI", Tahoma, sans-serif;
+
+  /* Zain Cash / Zain brand palette */
+  --color-ink: #120618;
+  --color-panel: #1a0b24;
+  --color-panel-2: #241033;
+  --color-line: rgba(207, 0, 114, 0.18);
+  --color-mist: #c4a8d4;
+  --color-foam: #f8eef8;
+  --color-brand: #cf0072;
+  --color-brand-hover: #e01282;
+  --color-brand-purple: #a44dc4;
+  --color-brand-deep: #5b1f69;
+  --color-teal: #cf0072;
+  --color-teal-dim: #e01282;
+  --color-amber: #e4d700;
+  --color-rose: #ff4d8d;
+  --color-ok: #69be28;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-ar);
+  font-size: 16px;
+  line-height: 1.65;
+  background: var(--color-ink);
+  color: var(--color-foam);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html[lang="en"] body {
+  font-family: var(--font-en);
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.font-display,
+.font-en {
+  font-family: var(--font-en);
+  letter-spacing: -0.01em;
+}
+
+.font-ar {
+  font-family: var(--font-ar);
+}
+
+.bg-atmosphere {
+  background:
+    radial-gradient(ellipse 80% 55% at 50% -8%, rgba(207, 0, 114, 0.28), transparent 55%),
+    radial-gradient(ellipse 45% 40% at 100% 15%, rgba(164, 77, 196, 0.22), transparent 50%),
+    radial-gradient(ellipse 40% 35% at 0% 70%, rgba(91, 31, 105, 0.35), transparent 45%),
+    linear-gradient(180deg, #120618 0%, #1a0b24 45%, #0e0414 100%);
+}
+
+.glass {
+  background: rgba(26, 11, 36, 0.78);
+  border: 1px solid var(--color-line);
+  backdrop-filter: blur(16px);
+}
+
+.glow-teal,
+.glow-brand {
+  box-shadow: 0 0 40px rgba(207, 0, 114, 0.35);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.hero-title {
+  font-size: clamp(1.85rem, 6vw, 3.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.section-pad {
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
+}
+
+.zain-mark {
+  background: linear-gradient(135deg, #cf0072 0%, #a44dc4 55%, #5b1f69 100%);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(207, 0, 114, 0.35);
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 15px;
+  }
+}
