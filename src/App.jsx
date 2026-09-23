@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import Demo from './pages/Demo'
 import About from './pages/About'
+import Journey from './pages/Journey'
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/demo" element={<Demo />} />
+          <Route path="/journey" element={<Journey />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </Layout>

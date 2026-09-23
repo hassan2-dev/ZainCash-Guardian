@@ -9,6 +9,7 @@ import { useLangStore } from '../store/langStore'
 const NAV = [
   { to: '/', end: true, ar: 'الرئيسية', en: 'Home' },
   { to: '/demo', ar: 'التجربة', en: 'Demo' },
+  { to: '/journey', ar: 'الرحلة', en: 'Journey' },
   { to: '/about', ar: 'عن المشروع', en: 'About' },
 ]
 

@@ -9,6 +9,7 @@ import {
   ArrowLeft,
   ArrowRight,
   Layers,
+  GitBranch,
 } from 'lucide-react'
 import { Bi, BiTitle, useT } from '../components/Bi'
 import { useLangStore } from '../store/langStore'
@@ -76,6 +77,27 @@ export default function About() {
           )}
         </p>
       </motion.div>
+
+      <Link
+        to="/journey"
+        className="glass mt-8 flex items-center gap-4 rounded-2xl border border-[var(--color-brand)]/30 p-4 transition hover:border-[var(--color-brand)]/60 sm:p-5"
+      >
+        <span className="zain-mark flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white">
+          <GitBranch className="h-6 w-6" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <div className="font-semibold text-[var(--color-foam)]">
+            <Bi ar="فلو تشارت رحلة Guardian" en="Guardian Journey Flowchart" />
+          </div>
+          <p className="mt-1 text-sm text-[var(--color-mist)]">
+            {t(
+              '4 طبقات · AI Agent · Security Gate · مسارات الفشل',
+              '4 layers · AI Agent · Security Gate · Failure paths',
+            )}
+          </p>
+        </div>
+        <Arrow className="h-5 w-5 shrink-0 text-[var(--color-brand)]" />
+      </Link>
 
       <div className="mt-8 space-y-3 sm:mt-10 sm:space-y-4">
         {STEPS.map((s, i) => (

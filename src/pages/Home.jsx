@@ -98,6 +98,12 @@ export default function Home() {
             >
               {t('كيف يعمل؟', 'How it works')}
             </Link>
+            <Link
+              to="/journey"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[var(--color-brand)]/35 bg-[var(--color-brand)]/10 px-5 py-3.5 text-sm text-[var(--color-foam)] transition hover:border-[var(--color-brand)]/60"
+            >
+              {t('فلو تشارت', 'Flowchart')}
+            </Link>
           </motion.div>
         </div>
 
